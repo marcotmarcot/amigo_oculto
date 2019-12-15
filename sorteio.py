@@ -95,7 +95,7 @@ class AmigoOculto:
             mailer_input[email] = members
         with open('mailer_input.py', 'w') as f:
             f.write(str(mailer_input))
-    
+
 def main():
     amigo_oculto = AmigoOculto(members.members_by_email)
     amigo_oculto.select()
