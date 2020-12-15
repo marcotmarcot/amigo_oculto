@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import smtplib
@@ -13,11 +13,12 @@ def send_mails(mailer_input):
     server.ehlo()
     server.starttls()
     server.login('marcotmarcot@gmail.com', '')
-    for mail in mailer_input:
+    print(mailer_input)
+    for mail, members in mailer_input.items():
         body = prefix
-        for member in mailer_input[mail]:
-            body += 'O amigo oculto de ' + member + ' é ' + mailer_input[mail][member] + ".\n"
-        message = "From: %s\nTo: %s\nSubject: %s\n\n%s" % (me, mail, 'Amigo oculto Natal 2019', body)
+        for name, member in members.items():
+            body += 'O amigo oculto de ' + name + ' é ' + member[0] + ".\n\nO endereço é " + member[2] + ".\n\nO presente deve ser endereçado a " + member[3] + "."
+        message = "From: %s\nTo: %s\nSubject: %s\n\n%s" % (me, mail, 'Amigo oculto Natal 2020', body)
         server.sendmail(me, [mail], message)
     server.close()
 
